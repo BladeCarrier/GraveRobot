@@ -1,0 +1,7 @@
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\bin\Debug\Car_Part1.exe
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\bin\Debug\Car_Part1.pdb
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\obj\x86\Debug\Car_Part1.Form1.resources
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\obj\x86\Debug\Car_Part1.Properties.Resources.resources
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\obj\x86\Debug\Car_Part1.csproj.GenerateResource.Cache
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\obj\x86\Debug\Car_Part1.exe
+D:\PC3\Dropbox\Files\year 2013\mirea\преподавание\осень\Car - практика\Car_Part1\Car_Part1\obj\x86\Debug\Car_Part1.pdb

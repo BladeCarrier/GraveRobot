@@ -1,0 +1,69 @@
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Car.exe.config
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\Car.exe
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\Car.pdb
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\Car.Form1.resources
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\Car.Properties.Resources.resources
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Car.exe
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Car.pdb
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\IronPython.dll
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\IronPython.Modules.dll
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Debugging.dll
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.dll
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Box2DX.pdb
+C:\Users\1\Dropbox\Files\year 2014\мирэа\консультирование\Тася\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.xml
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Car.exe.config
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\IronPython.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\IronPython.Modules.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Debugging.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Box2DX.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.xml
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.csprojResolveAssemblyReference.cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.Form1.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.Properties.Resources.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\NeuroCar_nav\Car\obj\x86\Debug\Car.csproj.GenerateResource.Cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Car.exe.config
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\IronPython.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\IronPython.Modules.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Debugging.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Box2DX.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.xml
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.csprojResolveAssemblyReference.cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.Form1.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.Properties.Resources.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.csproj.GenerateResource.Cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Car.exe.config
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Car.exe
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Car.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\IronPython.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\IronPython.Modules.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Microsoft.Scripting.Core.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Microsoft.Scripting.Debugging.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Microsoft.Scripting.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Box2DX.pdb
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\bin\Debug\Microsoft.Scripting.Core.xml
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.csprojResolveAssemblyReference.cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.Form1.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.Properties.Resources.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.csproj.GenerateResource.Cache
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.LicsDataWindow.resources

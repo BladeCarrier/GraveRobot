@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <type>czone</type>
+  <p>
+    <xc>48.6</xc>
+    <yc>12.3</yc>
+    <angle_rad>0</angle_rad>
+  </p>
+  <size>
+    <X>0</X>
+    <Y>0</Y>
+  </size>
+  <radius>2</radius>
+  <weight>30</weight>
+  <color>
+    <R>128</R>
+    <G>128</G>
+    <B>64</B>
+  </color>
+</objInfo>
