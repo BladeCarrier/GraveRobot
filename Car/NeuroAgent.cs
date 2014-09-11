@@ -25,7 +25,7 @@ namespace Car
     {
         FFNN nn;
         public NeuroAgent(Pose initial, Vec2 target, int xtiles = 80, int ytiles = 50)
-            : base(initial, target, xtiles, ytiles)
+            : base(initial, target)
         {
             /* Pose initial - начальное положение машины в системе Box2d с перевёрнутым углом (0 - слева, + против часовой),
              * Vec2 target - положение цели в системе Box2d,
@@ -61,7 +61,7 @@ namespace Car
 
         //<SD>
 
-        public override CarControl react(PerceptParams pp, float t)
+        public override Control react(PerceptParams pp, float t)
         {
             //ВАЖНО!!! для чистоты эксперимента необходимо, чтобы ОТРАБОТКА траектории, а значит, и
             //параметры регулятора и механизм вывода CarControl, были одинаковые или выбирались на равных

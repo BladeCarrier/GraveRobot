@@ -191,13 +191,15 @@ namespace Car
         public Pose p;
         public Vec2 target;
         public CarParams cpars;
+        public string agentName;
+        public string agentType;
+        public string agentGroup;
 
     }
     //сама среда
     public class Environment
     {
         public Physics physics;
-        public List<Car> robots;
         public Environment() { }
         class reporter : ContactListener
         {
@@ -275,64 +277,79 @@ namespace Car
 
         reporter guardianAngel; //Следит за всеми столкновениями бампера
         Form1 form;
-        public Environment(Physics px, List<Car> cars ,List<Vec2> targ, Form1 mainForm)
+        public Environment(Physics px, Form1 mainForm)
         {
             form = mainForm;
-            targets = targ;
             physics = px;
 
-            List<Body> noses = new List<Body>();
-            foreach(Car car in cars)
-            {
-                noses.Add(car.bumper);
-            }
-            guardianAngel = new reporter(noses,objects);
+            guardianAngel = new reporter(new List<Body>(),objects);
             physics.world.SetContactListener(guardianAngel);
 
-            robots = cars;
         }
-        public void addRobot(Car car, Vec2 target)
+
+        public Dictionary<Agent, Car> robotsDict = new Dictionary<Agent, Car>();
+        public Dictionary<Agent, Vec2> targetsDict = new Dictionary<Agent, Vec2>();
+
+        public void addRobot(Agent agent, Car car, Vec2 target)
         {
-            targets.Add(target);
-            robots.Add(car);
+            robotsDict[agent] = car;
+            targetsDict[agent] = target;
 
             guardianAngel.addGuarded(car.bumper);
         }
-        public void removeRobot(int ind)
+        public void removeRobot(Agent agent)
         {
 
-            var robot = robots[ind];
+            var robot = robotsDict[agent];
             guardianAngel.removeGuarded(robot.bumper);
             robot.disposeBodies(physics);
-            robots.RemoveAt(ind);
-            targets.RemoveAt(ind);
+            robotsDict.Remove(agent);
+            targetsDict.Remove(agent);
+               
         }
 
         /*ИНТЕРФЕЙС АГЕНТА*/
-        public void act(CarControl cc,int id)
+        public void act(Control cc,Agent agent)
         {   
-            robots[id].cc = cc;
+            if(robotsDict.ContainsKey(agent))
+                robotsDict[agent].cc = cc;
         }
 
-        public PerceptParams percept(int id)
+        public PerceptParams percept(Agent agent)
         {
-            var robot = robots[id];
-            var target = targets[id];
-            var ang_target = robot.Get_Angle_of_Point(target.X, target.Y);//конечная точка
-            
-            float cm, d;
-            robot.lidar.Calculate(out cm, out d);
-            Pose p;
-            Vec2 ps = robot.body.GetPosition();
-            p.xc = ps.X;
-            p.yc = ps.Y;
-            p.angle_rad =  - robot.Get_Forward_to_X_Angle();//переход в видимую систему координат.
-            var kaif = 1+guardianAngel.getK(robot.bumper)/1520;
-            
-            var ksurf = kaif * (1+robot.body.GetLinearDamping());//важно: дефолтный вес равен 1!
-            PerceptParams pp = new PerceptParams { lidar_cm = cm, lidar_d = d, targ_angle = ang_target, dist = (target - robot.body.GetPosition()).Length(), nose= robot.bumper.GetPosition() ,
-                p = p,kaif=kaif,ksurf=ksurf, cameraView = form.getLocalViewImage(robot), velocity = robot.body.GetLinearVelocity().Length()};
-            return pp;
+            if (robotsDict.ContainsKey(agent))
+            {
+                var robot = robotsDict[agent];
+                var target = targetsDict[agent];
+                var ang_target = robot.Get_Angle_of_Point(target.X, target.Y);//конечная точка
+
+                float cm, d;
+                robot.lidar.Calculate(out cm, out d);
+                Pose p;
+                Vec2 ps = robot.body.GetPosition();
+                p.xc = ps.X;
+                p.yc = ps.Y;
+                p.angle_rad = -robot.Get_Forward_to_X_Angle();//переход в видимую систему координат.
+                var kaif = 1 + guardianAngel.getK(robot.bumper) / 1520;
+
+                var ksurf = kaif * (robot.body.GetLinearDamping() / Car.damping);//важно: дефолтный вес равен 1!
+                PerceptParams pp = new PerceptParams
+                {
+                    lidar_cm = cm,
+                    lidar_d = d,
+                    targ_angle = ang_target,
+                    dist = (target - robot.body.GetPosition()).Length(),
+                    nose = robot.bumper.GetPosition(),
+                    p = p,
+                    kaif = kaif,
+                    ksurf = ksurf,
+                    cameraView = form.getLocalViewImage(robot),
+                    velocity = robot.body.GetLinearVelocity().Length()
+                };
+                return pp;
+            }
+                            return new PerceptParams { };
+
         }
         /*КОНЕЦ ИНТЕРФЕЙСА АГЕНТА*/
 
@@ -340,7 +357,6 @@ namespace Car
         /*СПСИСОК ВСЕХ ОБЪЕКТОВ В СРЕДЕ*/
         public List<envObject> objects = new List<envObject>();
         public List<objInfo> objInfos = new List<objInfo>();
-        public List<Vec2> targets = new List<Vec2>();
 
         //создание в указанном месте прямоугольного объекта-препятствия, движимого
         public envObject CreateFromInfo(objInfo info)
@@ -423,13 +439,15 @@ namespace Car
             return obj;
         }
         //создание в указанном месте круглой области-места, проходимого (лужа)
+        //08072014 Ёж: Тася, если вокруг круга описать квадрат, его сторона будет равна 2*радиус, а не просто радиусу. 2 часа искал баг @_@
+        //и в вашем veryHandsome он тоже багует >.<
         public envObject CreateCirZone(Pose pose, float radius, float k_, Color obcolor)
         {
             objInfos.Add(new objInfo { type = "czone", p = pose, radius = radius, weight = k_, color = obcolor });
 
             BodyBehaviour b = new BodyBehaviour { isDynamic = false, isPassable = true, k = k_ };
             InnerParams i = new InnerParams { features_angle = 0, features_line = 2, color = obcolor, features_gleam = 0, glow = 0, heat = 0 };
-            envObject obj = new envObject_crclArea(physics.CreateArea(pose, new Vec2(radius, radius), b), b, i, radius);
+            envObject obj = new envObject_crclArea(physics.CreateArea(pose, new Vec2(radius*2, radius*2), b,true), b, i, radius);
             objects.Add(obj);
             return obj;
         }
@@ -460,11 +478,11 @@ namespace Car
             objects.RemoveAt(objects.Count - 1);
         }
 
-        double kLast=1; //Сумма всех коэфициентов трения, действующих на робота в данном месте
 
         public void step(float dt)
         {
-            foreach (Car robot in robots)
+            
+            foreach (Car robot in robotsDict.Values)
             {
                 robot.OnBeforeStep(0, dt); //
                 //обсчёт замедления от грунта
@@ -473,11 +491,14 @@ namespace Car
                 //для всех областей на которые заехал робот, если они проходимые, то пусть затормаживают движение
                 foreach (Area a in physics.getGround(new Pose { xc = pose.X, yc = pose.Y, angle_rad = robot.body.GetAngle() }, new Vec2(robot.p.w, robot.p.h)))
                 {
-                    if (a.b.isPassable) kaf += a.b.k;
+                    if (a.b.isPassable)
+                    {
+                        if (a.b.k > kaf)
+                            kaf = a.b.k;
+                    }
                     else throw new Exception("Car intersects with an unpassable area. If that is only a minor intersection without any consequences, remove this exception, else - remove the area and make it a box2d body to handle collisions");
                 }
-                kLast = kaf + robot.body.GetLinearDamping();
-                robot.body.SetLinearDamping(robot.body.GetLinearDamping() + kaf);
+                robot.body.SetLinearDamping(Car.damping + kaf);
             }
                 physics.Step(dt);
             //robot.OnAfterStep(dt);//обсчитывает лидар, комментить для выключения
@@ -490,9 +511,9 @@ namespace Car
             foreach (envObject e in objects)
                 e.draw(g);
             g.UpdateGraphics();
-            foreach(Car robot in robots)
+            foreach(Car robot in robotsDict.Values)
                 robot.Draw(g);
-            foreach(Vec2 target in targets)
+            foreach(Vec2 target in targetsDict.Values)
                 g.DrawRectangle(target.X, target.Y, 0.3f, 0.3f, 0f, g.GetPen(System.Drawing.Color.Pink), true);
 
         }

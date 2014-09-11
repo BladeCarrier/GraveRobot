@@ -21,11 +21,10 @@ namespace Car
         static float k_PI = (float)System.Math.PI / 180; //57.296f
         GraphicsHelper gh,ghover; //графический помощник
         Physics ph;//физический помощник
-        
-        
-        List<Car> cars = new List<Car>(); //машина (и физика и графика). АКТУАЛЬНЫЙ список хранится в environment, возможна рассинхронизация
 
-        List<Agent> agents = new List<Agent>();// агент (управление) машины
+
+
+        public Dictionary<string, Agent> agents = new Dictionary<string, Agent>(); // агенты по именам
 
         public Environment env;//описание среды
         public bool started; //сигнал начала/конца работы
@@ -33,49 +32,72 @@ namespace Car
         private void Form1_Load(object sender, EventArgs e)
         {
             initArena();
-
-
+            
         }
        
         builders.Builder activeBuilder = new builders.Builder();
 
-        public List<LicsDataWindow> dataWnds;
         private void button1_Click(object sender, EventArgs e)
         {
             
             if (button1.Text == "Старт")
             {
-                if (env.robots.Count == 0)
+                if (env.robotsDict.Count == 0)
                 {
                     MessageBox.Show("add at least 1 robot");
                     return;
                 }
                 button1.Text = "Стоп";
-                //создание агента и среды
-                
-                dataWnds = new List<LicsDataWindow>();
+                t = 0;
 
-                agents = new List<Agent>();//dispose previous agents
-                if (SwitchLearning.Checked) 
+                foreach (string agentname in agents.Keys)
                 {
-                    for (int i = 0; i < env.robots.Count; i++)
-                    {
-                        var dataWnd = new LicsDataWindow();
-                        dataWnds.Add(dataWnd);
-                        dataWnd.InitializeComponent();
-
-                        dataWnd.Show();
-
-                        agents.Add(new LICStreeAgent(dataWnd, env.robots[i].pos, env.targets[i]));
-                    }
+                    robotListBox.Items.Add(agentname);
                 }
-                else
-                {
-                    for(int i=0; i<env.robots.Count;i++)
-                        agents.Add(new dreamerAgent(env.robots[i].pos, env.targets[i]));
-                }
+
 
                 saveToFile("last");
+
+
+                //agent init
+
+                //update targets and positions(positions - not to cause first pathGone unit at initial position)
+                foreach (var pair in env.targetsDict)
+                    (pair.Key as dreamerAgent).target = pair.Value;
+                foreach (var pair in env.robotsDict)
+                    (pair.Key as dreamerAgent).initial = pair.Value.pos;
+
+                //init group leaders
+                Dictionary<string, List<EvoForestUnitAgent>> groupsDict = new Dictionary<string, List<EvoForestUnitAgent>>();
+                foreach (Agent agent in agents.Values)
+                {
+                    if (typeOfAgent(agent) == "LICS forest car agent with transfer")
+                    {
+                        EvoForestUnitAgent unitAgent = agent as EvoForestUnitAgent;
+                        if (unitAgent.groupID == "") continue;
+                        if (!groupsDict.ContainsKey(unitAgent.groupID))
+                            groupsDict[unitAgent.groupID] = new List<EvoForestUnitAgent>();
+                        groupsDict[unitAgent.groupID].Add(unitAgent);
+                    }
+                }
+                foreach (var pair in groupsDict)
+                    agents.Add("coordinator " + pair.Key, new EvoForestTransferAgent(pair.Value));
+
+                //initialise data windows
+                foreach (var wnd in dataWnds)
+                {
+                    wnd.InitializeComponent();
+                }
+                //initialise agents
+                foreach (Agent agent in agents.Values)
+                    agent.initAgent();//why: init is safe only after all preparations are done
+                //agent init end
+                
+
+                
+
+                
+
 
                 /*
                 //создание объектов среды
@@ -106,10 +128,14 @@ namespace Car
                 button1.Text = "Старт";
                 //инциализируем отрисовку и физику
 
-                initArena(true);
+                initArena();
 
                 started = false;
-                foreach(LicsDataWindow dataWnd in dataWnds) dataWnd.Close();
+                //deinit
+
+                //end of deinit
+                loadFromFile("last");
+
             }
            
         }
@@ -120,13 +146,16 @@ namespace Car
             defaultTarget2 = new Vec2(15F, 10f);
         public Car createCar(Pose pose)
         {
+            var pars = new CarParams();
+            pars.InitDefault();
+            pars.h = 2.5f;
+            pars.h_base = 2f;
+            return createCar(pose, pars);
+        }
+        public Car createCar(Pose pose, CarParams pars)
+        {
             // рожаем машину
-            Car car;
-            var p = new CarParams();
-            p.InitDefault();
-            p.h = 2.5f;
-            p.h_base = 2f;
-            car = new Car(p, 0);
+            Car car = new Car(pars, 0);
 
             car.Create(ph, pose);
             return car;
@@ -145,7 +174,7 @@ namespace Car
             car.Create(ph, pose);
             return car;
         }
-        public void initArena(bool noCars = false)
+        public void initArena()
         {
 
             //инциализируем отрисовку и физику
@@ -154,17 +183,19 @@ namespace Car
             ghover = new GraphicsHelper(pictureBoxOverlay);
             ph = new Physics();
             pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-            cars = new List<Car>();
-            List<Vec2> targets = new List<Vec2>();
-            if (!noCars)
-            {
-                Car car1= createCar(defaultPose1);
-                cars.Add(car1);
-                targets.Add(defaultTarget1);
-            }
-            env = new Environment(ph,cars, targets, this);//
+            env = new Environment(ph, this);//
+            
             env.draw(gh);
             pictureBoxOverlay.Image = (Image)pictureBox1.Image.Clone();
+            foreach (LicsDataWindow dataWnd in dataWnds) dataWnd.Close();
+            dataWnds = new List<LicsDataWindow>();
+            while (robotListBox.Items.Count != 0)
+                robotListBox.Items.RemoveAt(0);
+            agents = new Dictionary<string, Agent>();//dispose previous agents
+            
+
+
+
         }
         private void pictureBoxOverlay_MouseClick(object sender, MouseEventArgs e)
         {
@@ -199,21 +230,23 @@ namespace Car
             t += dt;
 
             
-            for(int i =0;i<agents.Count;i++)
+            foreach(Agent agent in agents.Values)
             {
-                var p=env.percept(i);
-                var agent = agents[i];
-                env.act(agent.react(p, t),i); // вот он цикл работы агента
+                var p=env.percept(agent);
+                env.act(agent.react(p, t),agent); // вот он цикл работы агента
             }
-#warning temp 0th
-            var pp = env.percept(0);
+
+            string observedName = robotListBox.SelectedItem as string;
+            if (observedName == null)
+                observedName = robotListBox.Items[0] as string;
+            Agent carAgent = agents[observedName];
+            var pp = env.percept(carAgent);
 
             env.step(dt);
 
             
             // рисуем
             env.draw(gh);
-            Agent carAgent = agents[0];
             /*отображение геометрии и узлов поиска пути*/
             double ox = 80.0 / ((dreamerAgent)carAgent).pr.dx;
             double oy = 50.0 / ((dreamerAgent)carAgent).pr.dy;
@@ -242,8 +275,8 @@ namespace Car
             }
             
             /*Конец отображения геометрии и узлов поиска пути*/
+            var car = env.robotsDict[carAgent];
 
-            var car = env.robots[0];
             /*СОХРАНЕНИЕ ЛОГ КАРТИНОК*/
 
             pictureBox2.Image = getLocalViewImage(car);
@@ -281,8 +314,10 @@ namespace Car
 
         public bool saveToFile(string name, bool reWrite = true)
         {
+            if (name == "")
+                return false;
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"saves\" + name);
-
+            
             
             if (dir.Exists)
             {
@@ -297,17 +332,35 @@ namespace Car
             
             System.Xml.Serialization.XmlSerializer roboser = new System.Xml.Serialization.XmlSerializer(typeof(carCfg));
             System.IO.StreamWriter writer;
-            int digitsCount = env.robots.Count.ToString().Length;
-            for (int id = 0; id < env.robots.Count; id++)
+            
+            int digitsCount = agents.Count.ToString().Length;
+            int id = 0;
+            foreach(var keyValue in agents)
             {
-                var ids =  id.ToString();
+                var agent = keyValue.Value;
+                var ids = id.ToString();
                 while (ids.Length < digitsCount) ids = "0" + ids;
                 writer = System.IO.File.CreateText(@"saves\" + name + @"\robot"+ids+".cfg");
-                
-                roboser.Serialize(writer, new carCfg { p = env.robots[id].pos, target = env.targets[id] });
-                writer.Close();
-            }
 
+
+                Pose pos = new Pose { };
+                Vec2 target = new Vec2();
+                CarParams cparams = new CarParams();
+                if (env.robotsDict.ContainsKey(agent))
+                {
+                    cparams = env.robotsDict[agent].p;
+                    pos = env.robotsDict[agent].pos;
+                    target = env.targetsDict[agent];
+                }
+
+                string groupID = "";
+                if (typeOfAgent(agent) == "LICS forest car agent with transfer")
+                    groupID = (agent as EvoForestUnitAgent).groupID;
+                roboser.Serialize(writer, new carCfg { p = pos, target = target, agentName = keyValue.Key, agentType =typeOfAgent(agent), agentGroup =groupID, cpars = cparams });
+
+                writer.Close();
+                id++;
+            }
 
 
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(objInfo));
@@ -322,7 +375,8 @@ namespace Car
                 ser.Serialize(writer, obj);
                 writer.Close();
 
-            }
+            }  
+
             return true;
 
         }
@@ -334,8 +388,8 @@ namespace Car
                 System.Xml.Serialization.XmlSerializer roboser = new System.Xml.Serialization.XmlSerializer(typeof(carCfg));
                 var catalog = new System.IO.DirectoryInfo(@"saves\" + name);
                 System.IO.FileStream reader;
-                env.robots = new List<Car>();
-                env.targets = new List<Vec2>();
+                env.robotsDict = new  Dictionary<Agent,Car>();
+                env.targetsDict = new Dictionary<Agent, Vec2>();
                 
                 List<FileInfo> fileList = new List<FileInfo>(catalog.GetFiles("robot*.cfg"));
                 if (forceSort)
@@ -350,16 +404,22 @@ namespace Car
                     }
                     fileList = new List<FileInfo>(fileSL.Values);
                 }
-
                 foreach (System.IO.FileInfo file in fileList)
                 {
                     reader = file.OpenRead();
                     carCfg cfg = (carCfg)(roboser.Deserialize(reader));
                     reader.Close();
-                    env.addRobot(createCar(cfg.p),cfg.target);
+                    Car car = createCar(cfg.p, cfg.cpars);
+                    
+                        
+                    var agent = agentByType(cfg.agentType, car,cfg.target);
+                    if (typeOfAgent(agent) == "LICS forest car agent with transfer")
+                        (agent as EvoForestUnitAgent).groupID = cfg.agentGroup;
+
+                    env.addRobot(agent,car,cfg.target);
+                    agents[cfg.agentName] = agent;
 
                 }
-
 
 
                 System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"saves\" + name);
@@ -387,17 +447,101 @@ namespace Car
                     reader.Close();
                     
                 }
+                //draw
+                pictureBox1.Invalidate();
+                env.draw(gh);
+                pictureBoxOverlay.Image = (Image)pictureBox1.Image.Clone(); 
                 return true;
             }
             catch (Exception e)
             {
+                
                 return false;
             }
         }
+        //version-specific
+        public List<LicsDataWindow> dataWnds = new List<LicsDataWindow>();
+        //end of version-specific
+        public Agent addNewAgent(string name, string type, string groupID = "")
+        {
+            if (name == null)
+                return null;
+            if (agents.ContainsKey(name))
+                return null;
 
+            Agent agent;
+
+            if (type != "LICS forest coordinator")
+            {
+
+                Car car = Form1.createCar(new Pose { xc = 10, yc = 10, angle_rad = 0 }, env.physics);
+                Vec2 target = new Vec2(15, 10);
+                agent = agentByType(type, car, target,groupID);
+                env.addRobot(agent, car, target);
+
+            }
+            else
+                agent = agentByType(type);
+
+            agents[name] = agent;
+
+            return agent;
+        }
+        public Agent agentByType(string type,Car robot = null, Vec2 targ = new Vec2(),string group = "")
+        {//there must have been a better way to do this
+            LicsDataWindow wnd;//for simplicity of naming wnd variables
+            switch (type)
+            {
+                case "reflex agent":
+                    return new reflexAgent();
+                case "dreamer agent":
+                    return new dreamerAgent(robot.pos,targ);
+                case "HTM agent":
+                    return new NeuroAgent(robot.pos,targ);
+                case "LICS tree agent":
+                    wnd = new LicsDataWindow();
+                    dataWnds.Add(wnd);
+                    return new LICSTreeAgent(wnd, robot.pos, targ);
+                case "planning agent":
+                    wnd = new LicsDataWindow();
+                    dataWnds.Add(wnd);
+                    return new NotLearningAgent( wnd,robot.pos,targ);
+                
+                case "LICS forest car agent":
+                    wnd = new LicsDataWindow();
+                    dataWnds.Add(wnd);
+                    return new LICSForestAgent(wnd,robot.pos,targ);
+                
+                case "LICS forest car agent with transfer":
+                    wnd = new LicsDataWindow();
+                    dataWnds.Add(wnd);
+                    return new EvoForestUnitAgent(wnd,robot.pos,targ,group);
+                    
+                case "LICS forest coordinator":
+                    return new EvoForestTransferAgent(new List<EvoForestUnitAgent>());
+            }
+                    return null;
+        }
+        public string typeOfAgent(Agent agent)
+        {//there must have been a better way to do this
+            Type type =  agent.GetType();
+            
+            switch (type.Name)
+            {
+                case "reflexAgent": return "reflex agent";
+                case "dreamerAgent": return "dreamer agent";
+                case "NeuroAgent": return "HTM agent";
+                case "LICSTreeAgent": return "LICS tree agent";
+                case "EvoForestUnitAgent": return "LICS forest car agent with transfer";
+                case "NotLearningAgent": return "planning agent";
+                case "LICSForestAgent": return "LICS forest car agent";
+                case "EvoForestTransferAgent": return "LICS forest coordinator";
+            }
+            return null;
+        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (Agent carAgent in agents)
+            foreach (Agent carAgent in agents.Values)
             {
                 var x = carAgent as reflexAgent;
                 if (x != null) x.ClearResources();
@@ -444,6 +588,9 @@ namespace Car
             activeBuilder = new builders.RemoverBuilder(env);
             activeBuilder.Show();  
         }
+        Agent observedAgent;
+        }
+    
 
 
 
@@ -451,4 +598,4 @@ namespace Car
         
 
     }
-}
+

@@ -26,7 +26,7 @@ namespace Car
      * метод Problem.setHeuristic(state sFrom, state sTo, double cost), либо более полно - создав собственный класс
      * наследник Prbl и прописав его в конструкторе SekouNeuroAgent
      */
-    class LICStreeAgent : dreamerAgent
+    class LICSTreeAgent : dreamerAgent
     {
         public LicsDataWindow dataWnd;
         public dynamic getPythonWrapper(string pyFile, Hashtable parameters)
@@ -95,8 +95,8 @@ namespace Car
             pythoner.Start();
             pythonerLaunched = true;
         }
-        public LICStreeAgent(LicsDataWindow dataW,Pose initial, Vec2 target, int xtiles = 80, int ytiles = 50)
-            : base(initial, target, xtiles, ytiles)
+        public LICSTreeAgent(LicsDataWindow dataW,Pose initial, Vec2 target)
+            : base(initial, target)
         {
             /* Pose initial - начальное положение машины в системе Box2d с перевёрнутым углом (0 - слева, + против часовой),
              * Vec2 target - положение цели в системе Box2d,
@@ -107,17 +107,22 @@ namespace Car
             dataWnd = dataW;
 
           
+        }
+        public override void initAgent()
+        {
+            base.initAgent();
             //goBackOnCollisionTimer = 0;   
             //initializing LICS FROM A WRAPPER
-            wrapper = getPythonWrapper("wrapper.py", new Hashtable());
+            wrapper = getPythonWrapper("..\\..\\..\\PyTree\\wrapper.py", new Hashtable());
             system = wrapper.getSystem();
             enc = system._injectedEncoder;
             system.compose();
             tree = system.tree;
-            pos = initial;
             launchComposeThread();
-            
+            pos = initial;
             // initialisation end
+            dataWnd.Show();
+
         }
         /* Содержание dreamerAgent. Работать с ними условимся только в СВОИХ классах, ибо перемены в DreamAgent для 1 наследника могут вывести из строя другой.
          * public Prbl pr  - описание проблемы
@@ -140,13 +145,52 @@ namespace Car
          * double lastdVel, sumdVel,maxVel = 50,targVel =30; - параметры регуляции по скорости
          */
         Pose pos;
-
-        public override CarControl react(PerceptParams pp, float t)
+        //measurement data
+        int numCollisions = 0,
+            numMeasures = 0;
+        double pathDistance = 0,
+               maxSpeed = 0,
+               sumPassability = 1;
+        bool goingBack= false;
+        bool finished = false;
+        //end of measurements
+        public override Control react(PerceptParams pp, float t)
         {
             //ВАЖНО!!! для чистоты эксперимента необходимо, чтобы ОТРАБОТКА траектории, а значит, и
             //параметры регулятора и механизм вывода CarControl, были одинаковые или выбирались на равных
             //условиях во всех 7(план максимум) сериях экспериментов: контрольная, сети по базе, деревья по базе,
             //сети с ходу, деревья с ходу, комбинация по базе, комбинация с ходу.
+            //07072014 Ёж: ну как, три пункта мы выполнили :P
+
+            //measures:
+            if (!finished)
+            {
+                if (path.Count <= 1)
+                    finished = true;
+                
+                numMeasures += 1;
+                pathDistance += System.Math.Sqrt(System.Math.Pow(pos.xc - pp.p.xc, 2) + System.Math.Pow(pos.yc - pp.p.yc, 2));//distance of travel.
+                sumPassability += System.Math.Min(pp.ksurf, 1000);
+                if (pp.velocity > maxSpeed) maxSpeed = pp.velocity;
+                if (t - tBack < goBackOnCollisionTimer)
+                {
+                    if (!goingBack)
+                    {
+                        goingBack = true;
+                        numCollisions++;
+                    }
+                }
+                else
+                    goingBack = false;
+                dataWnd.TimeLabel.Text = t.ToString("F3");
+                dataWnd.PathDistanceLabel.Text = pathDistance.ToString("F3");
+                dataWnd.NumCollisionsLabel.Text = numCollisions.ToString();
+                dataWnd.AvgSpeedLabel.Text = (pathDistance / t).ToString("F3");
+                dataWnd.MaxSpeedLabel.Text = (maxSpeed).ToString("F3");
+                dataWnd.AvgPassabilityLabel.Text = (sumPassability / numMeasures).ToString("F3");
+            }
+            //end of measures
+
             pos = pp.p;
             return base.react(pp, t);
             //выполняется на каждом тике таймера.
@@ -229,12 +273,12 @@ namespace Car
         //end of pythonies
         public PerceptParams pplast = new PerceptParams{ };
         List<coordpair> tiles= new List<coordpair>();
-        double timeBudget = 0.1;
         
         Dictionary<coordpair, Bitmap> photos = new Dictionary<coordpair, Bitmap>();
         //HashSet<double> costs = new HashSet<double>();//!debug variable... at least on creation it was
         Dictionary<coordpair, dynamic> samples = new Dictionary<coordpair, dynamic>();
         Dictionary<coordpair, System.Windows.Forms.ListViewItem> images = new Dictionary<coordpair, System.Windows.Forms.ListViewItem>();
+        
         void feedSample(Bitmap tile,coordpair coords, double measuredcost)
         {
             measuredcost = System.Math.Round(measuredcost, 1);
@@ -258,8 +302,8 @@ namespace Car
             }
         }
         public Dictionary<state, double> measureHistory = new Dictionary<state, double>();//список рутовых измерений(за счёт kaif и ksurf) за всё время. сами Measures обнуляются.
-        public int cntr = 1;//debug
-
+        
+        public int classificationsPerCall = 150;//number of random classifications within field of view per call of IntelligentSystemCalculateWeights.
         override public void intelligentSystemCalculateWeights(PerceptParams pp, float t)
         {
             
@@ -283,7 +327,6 @@ namespace Car
                     dataWnd.treeVisualisationLabel.Text = ((string)tree.visualise(enc)).Replace("takeValue","").Replace("takeConstant","");
                     dataWnd.encbox.Text = enc.visualise();
                     launchComposeThread();
-                    cntr += 1;
                 }
             }
             //конец фазы создания примеров
@@ -295,18 +338,19 @@ namespace Car
             pplast = pp;
             DateTime atStart = DateTime.Now;
             Random picker = new Random();
-            while ((DateTime.Now.Subtract(atStart).TotalSeconds < timeBudget))
+            
+            for (int itr = 0; itr < classificationsPerCall;itr++ )
             {
-                if (tiles.Count == 0) 
+                if (tiles.Count == 0)
                 {
                     tiles = getVisibleTiles();
                     continue;//in case there are none
                 }
-                
+
                 int ind = picker.Next(tiles.Count);
                 coordpair tile = tiles[ind];
-                
-                    
+
+
                 tiles.RemoveAt(ind);
 
                 double dist = (getTileCoords(tile.x, tile.y) - new Vec2(pos.xc, pos.yc)).Length();
@@ -334,12 +378,11 @@ namespace Car
 
                         }
                     }
-                    catch( Exception e)
-                        {};
+                    catch (Exception e)
+                    { };
 
                 }
             }
-            
         }
     }
 }

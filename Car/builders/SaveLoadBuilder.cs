@@ -31,9 +31,10 @@ namespace Car.builders
 
         private void loadBTN_Click(object sender, EventArgs e)
         {
-            form.initArena(true);
+            form.initArena();
             if (!form.loadFromFile(nameBox.Text))
-                MessageBox.Show("Failed to load");  
+                MessageBox.Show("Failed to load");
+
         }
     }
 }

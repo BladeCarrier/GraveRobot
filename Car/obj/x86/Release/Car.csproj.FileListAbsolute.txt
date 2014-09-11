@@ -8,14 +8,7 @@ C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x8
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Release\Car.csproj.GenerateResource.Cache
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Car.exe
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Car.pdb
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Box2DX.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\IronPython.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\IronPython.Modules.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Dynamic.dll
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.Core.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.Debugging.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Box2DX.pdb
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.Core.xml
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Release\Car.builders.ColumnBuilder.resources
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Release\Car.builders.ObstacleBuilder.resources
@@ -47,3 +40,6 @@ C:\Users\Тася\Desktop\NeuroCar_nav\Car\obj\x86\Release\Car.builders.SaveLoad
 C:\Users\Тася\Desktop\NeuroCar_nav\Car\obj\x86\Release\Car.builders.RemoverBuilder.resources
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Release\Car.builders.SaveLoadBuilder.resources
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Release\Car.builders.RemoverBuilder.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.AspNet.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Microsoft.Scripting.AspNet.xml
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Release\Box2DX.dll

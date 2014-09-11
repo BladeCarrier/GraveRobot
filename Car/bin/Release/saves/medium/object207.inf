@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <type>wall</type>
+  <p>
+    <xc>38.6</xc>
+    <yc>23.3</yc>
+    <angle_rad>0</angle_rad>
+  </p>
+  <size>
+    <X>1</X>
+    <Y>5</Y>
+  </size>
+  <radius>0</radius>
+  <weight>0</weight>
+  <color>
+    <R>128</R>
+    <G>64</G>
+    <B>0</B>
+  </color>
+</objInfo>

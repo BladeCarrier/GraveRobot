@@ -18,13 +18,14 @@ def colorIntensity(color):
 def sampleFromBitmap( bitmap):
 
     r = samples.sample([],[])
-    imin = 1
-    imax = 0
-    isum = 0
+    imin=rmin = gmin = bmin = 1
+    imax =rmax = gmax = bmax = 0
+    isum = rsum = gsum = bsum = 0
     for i in range(width):
         for j in range(height):
             pixel = bitmap.GetPixel(i,j)
             intense = colorIntensity(pixel)
+            
             #setattr(r, 'intensity_'+str(i)+'_'+str(j), intense)
             #setattr(r, 'colorR_'+str(i)+'_'+str(j), pixel.R)
             #setattr(r, 'colorG_'+str(i)+'_'+str(j), pixel.G)
@@ -32,17 +33,38 @@ def sampleFromBitmap( bitmap):
             if intense< imin: imin = intense
             if intense> imax: imax = intense
             isum+= intense
+            if pixel.R< rmin: rmin = pixel.R
+            if pixel.R> imax: rmax = pixel.R
+            rsum+= pixel.R
+            if pixel.G< rmin: rmin = pixel.G
+            if pixel.G> imax: rmax = pixel.G
+            gsum+= pixel.G
+            if pixel.B< rmin: rmin = pixel.B
+            if pixel.B> imax: rmax = pixel.B
+            bsum+= pixel.B
+
     setattr(r,'MinIntensity',imin)
     setattr(r,'MaxIntensity',imax)
     setattr(r,'AvgIntensity',isum/width/height)
 
+    setattr(r,'MinBlue',bmin)
+    setattr(r,'MaxBlue',bmax)
+    setattr(r,'Blue',bsum/width/height)
+
+    setattr(r,'MinGreen',gmin)
+    setattr(r,'MaxGreen',gmax)
+    setattr(r,'Green',gsum/width/height)
+
+    setattr(r,'MinRed',rmin)
+    setattr(r,'MaxRed',rmax)
+    setattr(r,'Red',rsum/width/height)
     return r
 def getSystem():
 
     en = encoder([],'weight')
 
 
-    nums = ['MinIntensity','MaxIntensity','AvgIntensity']
+    nums = ['MinIntensity','MaxIntensity','AvgIntensity','Red','Green','Blue']
     #nums +=['intensity_'+str(i)+'_'+str(j)    for i in range(width) for j in range(height)]
     #nums +=['colorR_'+str(i)+'_'+str(j)    for i in range(width) for j in range(height)]
     #nums +=['colorG_'+str(i)+'_'+str(j)    for i in range(width) for j in range(height)]

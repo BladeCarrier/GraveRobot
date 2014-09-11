@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car", "Car\Car.csproj", "{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PyClassi", "PyClassi\PyClassi.pyproj", "{8B98390C-929C-4165-A6DC-3D2970135D0E}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PyLICS", "PyLICS\PyLICS.pyproj", "{8B98390C-929C-4165-A6DC-3D2970135D0E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PyTree", "PyTree\PyTree.pyproj", "{943845E5-D283-4396-B6F1-8DB50851DA61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		pyC|Any CPU = pyC|Any CPU
+		pyC|Mixed Platforms = pyC|Mixed Platforms
+		pyC|x86 = pyC|x86
 		Release|Any CPU = Release|Any CPU
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
@@ -21,6 +26,11 @@ Global
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Debug|x86.ActiveCfg = Debug|x86
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Debug|x86.Build.0 = Debug|x86
+		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.pyC|Any CPU.ActiveCfg = pyC|x86
+		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.pyC|Mixed Platforms.ActiveCfg = pyC|x86
+		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.pyC|Mixed Platforms.Build.0 = pyC|x86
+		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.pyC|x86.ActiveCfg = pyC|x86
+		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.pyC|x86.Build.0 = pyC|x86
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Release|Any CPU.ActiveCfg = Release|x86
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Release|Any CPU.Build.0 = Release|x86
 		{4AF52F5D-2DA8-447D-B44C-781EFEEAE8EC}.Release|Mixed Platforms.ActiveCfg = Release|x86
@@ -32,11 +42,31 @@ Global
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8B98390C-929C-4165-A6DC-3D2970135D0E}.pyC|Any CPU.ActiveCfg = pyC|Any CPU
+		{8B98390C-929C-4165-A6DC-3D2970135D0E}.pyC|Any CPU.Build.0 = pyC|Any CPU
+		{8B98390C-929C-4165-A6DC-3D2970135D0E}.pyC|Mixed Platforms.ActiveCfg = pyC|Any CPU
+		{8B98390C-929C-4165-A6DC-3D2970135D0E}.pyC|Mixed Platforms.Build.0 = pyC|Any CPU
+		{8B98390C-929C-4165-A6DC-3D2970135D0E}.pyC|x86.ActiveCfg = pyC|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8B98390C-929C-4165-A6DC-3D2970135D0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.pyC|Any CPU.ActiveCfg = pyC|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.pyC|Any CPU.Build.0 = pyC|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.pyC|Mixed Platforms.ActiveCfg = pyC|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.pyC|Mixed Platforms.Build.0 = pyC|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.pyC|x86.ActiveCfg = pyC|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{943845E5-D283-4396-B6F1-8DB50851DA61}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

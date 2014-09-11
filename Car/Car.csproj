@@ -51,19 +51,11 @@
       <HintPath>.\IronPython.Modules.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Microsoft.Dynamic.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Microsoft.Scripting.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Scripting.AspNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Scripting.Core, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Scripting.Debugging, Version=0.9.6.20, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Microsoft.Scripting.Debugging.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -112,6 +104,7 @@
     <Compile Include="Car.cs" />
     <Compile Include="DStar.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="EvoForestTransferAgent.cs" />
     <Compile Include="FFNN.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -124,15 +117,18 @@
     <Compile Include="LicsDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LICSTreeAgent.cs" />
     <Compile Include="Lidar.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LICStreeAgent.cs" />
+    <Compile Include="LICSForestAgent.cs" />
     <Compile Include="NeuroAgent.cs" />
+    <Compile Include="NotLearningAgent.cs" />
     <EmbeddedResource Include="builders\ColumnBuilder.resx">
       <DependentUpon>ColumnBuilder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="builders\ObstacleBuilder.resx">
       <DependentUpon>ObstacleBuilder.cs</DependentUpon>

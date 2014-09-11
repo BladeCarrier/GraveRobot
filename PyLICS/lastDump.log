@@ -1,0 +1,774 @@
+
+
+
+
+Beginning round # 0 
+
+End round 
+id: 4 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 7 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [MinIntensity]]] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 32 
+f: 1.09090909091 ,n: 3 ,sm: 6 ,st: 5 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [84.0]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_takeValue [Red] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 15 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 8 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+2 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [MinIntensity]]] 
+0 :  op_takeValue [Red] 
+1 :  op_takeValue [MinIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [MinIntensity]] 
+descr end
+
+ 
+id: 12 
+f: 1.63636363636 ,n: 3 ,sm: 6 ,st: 10 
+tree repr: 
+  IF more [ takeValue [Red],  takeConstant [127.5]]:
+    THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.222276688453]]:
+        THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+        ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+2 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_sum [ op_takeValue [AvgIntensity],  op_takeValue [Red]] 
+0 :  op_takeValue [Blue] 
+0 :  op_sum [ op_takeValue [Red],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [AvgIntensity],  op_minus [ op_takeValue [Red]]] 
+0 :  op_takeValue [MinIntensity] 
+0 :  op_mul [ op_takeValue [Red],  op_takeValue [AvgIntensity]] 
+descr end
+
+ 
+id: 11 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 7 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 2 
+f: 1.63636363636 ,n: 3 ,sm: 6 ,st: 8 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.5]]:
+    THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN IF more [ takeValue [Green],  takeConstant [84.0]]:
+        THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+        ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [Green],  op_takeValue [AvgIntensity]] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [MinIntensity]] 
+0 :  op_takeValue [Red] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 33 
+f: 1.09090909091 ,n: 3 ,sm: 6 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ takeValue [Red],  takeConstant [167.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+1 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 5 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+descr end
+
+ 
+id: 7 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 7 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MaxIntensity],  takeConstant [0.985620915033]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+2 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 17 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 7 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+2 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 34 
+f: 1.09090909091 ,n: 3 ,sm: 6 ,st: 5 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.083660130719]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+2 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 30 
+f: 1.09090909091 ,n: 3 ,sm: 6 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [84.0]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 31 
+f: 1.09090909091 ,n: 3 ,sm: 6 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ takeValue [Red],  takeConstant [167.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+1 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 6 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 7 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [Green],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [Green],  op_minus [ op_takeValue [Red]]] 
+descr end
+
+ 
+id: 1 
+f: 0.784090909091 ,n: 3 ,sm: 6 ,st: 8 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [Red]]] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+
+
+
+
+Beginning round # 1 
+
+End round 
+id: 4 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [MinIntensity]]] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 32 
+f: 1.13939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [84.0]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_mul [ op_takeValue [AvgIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_sum [ op_takeValue [Green],  op_minus [ op_takeValue [AvgIntensity]]] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 15 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 8 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+2 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [MinIntensity]]] 
+0 :  op_takeValue [Red] 
+1 :  op_takeValue [MinIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [MinIntensity]] 
+descr end
+
+ 
+id: 12 
+f: 1.57575757576 ,n: 3 ,sm: 10 ,st: 8 
+tree repr: 
+  IF more [ takeValue [Red],  takeConstant [127.5]]:
+    THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.222276688453]]:
+        THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+        ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+2 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_sum [ op_takeValue [AvgIntensity],  op_takeValue [Red]] 
+0 :  op_takeValue [Blue] 
+0 :  op_sum [ op_takeValue [Red],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 11 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [MaxIntensity]] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [Red] 
+descr end
+
+ 
+id: 2 
+f: 1.57575757576 ,n: 3 ,sm: 10 ,st: 9 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.5]]:
+    THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN IF more [ takeValue [Green],  takeConstant [84.0]]:
+        THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+        ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [Green],  op_takeValue [AvgIntensity]] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [MinIntensity]] 
+0 :  op_mul [ op_takeValue [AvgIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_takeValue [Red] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 37 
+f: 0.8 ,n: 3 ,sm: 10 ,st: 8 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [Red]]] 
+1 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 33 
+f: 1.13939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ takeValue [Red],  takeConstant [167.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Blue] 
+0 :  op_sum [ op_takeValue [Blue],  op_minus [ op_takeValue [Red]]] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [Blue],  op_minus [ op_takeValue [AvgIntensity]]] 
+1 :  op_takeValue [Red] 
+descr end
+
+ 
+id: 5 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+0 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [Red]] 
+0 :  op_sum [ op_takeValue [Green],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+descr end
+
+ 
+id: 36 
+f: 0.8 ,n: 3 ,sm: 10 ,st: 4 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.083660130719]]:
+    THAN IF more [ takeValue [Blue],  takeConstant [170.0]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+1 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 7 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [MaxIntensity],  takeConstant [0.985620915033]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [Red]]] 
+0 :  op_takeValue [Blue] 
+2 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+descr end
+
+ 
+id: 17 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 7 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+2 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 34 
+f: 1.13939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.083660130719]]:
+    THAN IF more [ takeValue [MinIntensity],  takeConstant [0.583660130719]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_minus [ op_takeValue [MinIntensity]]] 
+2 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 39 
+f: 0.8 ,n: 3 ,sm: 10 ,st: 7 
+tree repr: 
+  IF more [ mul [ takeValue [Green],  takeValue [Red]],  takeConstant [6720.0]]:
+    THAN IF more [ takeValue [MaxIntensity],  takeConstant [0.985620915033]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ sum [ takeValue [Green],  takeValue [Red]],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+1 :  op_mul [ op_takeValue [Green],  op_takeValue [Red]] 
+1 :  op_sum [ op_takeValue [Green],  op_takeValue [Red]] 
+0 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [Green],  op_minus [ op_takeValue [Red]]] 
+descr end
+
+ 
+id: 30 
+f: 1.13939393939 ,n: 3 ,sm: 10 ,st: 5 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [84.0]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [MaxIntensity],  takeConstant [0.166666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [Green]] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 38 
+f: 0.8 ,n: 3 ,sm: 10 ,st: 5 
+tree repr: 
+  IF more [ takeValue [MinIntensity],  takeConstant [0.083660130719]]:
+    THAN IF more [ sum [ takeValue [MaxIntensity],  takeValue [AvgIntensity]],  takeConstant [1.70326797386]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ sum [ takeValue [MaxIntensity],  takeValue [AvgIntensity]],  takeConstant [0.171296296296]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity],  op_takeValue [MinIntensity]] 
+0 :  op_sum [ op_takeValue [MinIntensity],  op_minus [ op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]]]] 
+0 :  op_mul [ op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]],  op_takeValue [MinIntensity]] 
+2 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+1 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 31 
+f: 1.13939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ takeValue [Red],  takeConstant [167.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [AvgIntensity],  takeConstant [0.00462962962963]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+1 :  op_takeValue [Blue] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+descr end
+
+ 
+id: 6 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [Green],  takeConstant [127.5]]:
+    THAN IF more [ takeValue [Green],  takeConstant [211.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+2 :  op_takeValue [Green] 
+0 :  op_takeValue [Blue] 
+0 :  op_mul [ op_takeValue [Green],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+0 :  op_sum [ op_takeValue [Green],  op_minus [ op_takeValue [Red]]] 
+descr end
+
+ 
+id: 1 
+f: 0.893939393939 ,n: 3 ,sm: 10 ,st: 6 
+tree repr: 
+  IF more [ takeValue [MaxIntensity],  takeConstant [0.5]]:
+    THAN IF more [ takeValue [AvgIntensity],  takeConstant [0.717647058824]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ takeValue [Red],  takeConstant [3.5]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+1 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Blue] 
+1 :  op_takeValue [MaxIntensity] 
+0 :  op_mul [ op_takeValue [MaxIntensity],  op_takeValue [AvgIntensity]] 
+0 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+1 :  op_takeValue [Red] 
+descr end
+
+ 
+id: 35 
+f: 0.8 ,n: 3 ,sm: 10 ,st: 10 
+tree repr: 
+  IF more [ takeValue [Blue],  takeConstant [42.5]]:
+    THAN IF more [ sum [ takeValue [AvgIntensity],  takeValue [Red]],  takeConstant [168.217647059]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 1}
+    ELSE IF more [ sum [ takeValue [MaxIntensity],  takeValue [Red]],  takeConstant [3.66666666667]]:
+      THAN result ={' op_takeValue [weight2]': 0, ' op_takeValue [weight1]': 1, ' op_takeValue [weight0]': 0}
+      ELSE result ={' op_takeValue [weight2]': 1, ' op_takeValue [weight1]': 0, ' op_takeValue [weight0]': 0}
+ 
+states: 
+0 :  op_takeValue [AvgIntensity] 
+0 :  op_takeValue [Green] 
+1 :  op_sum [ op_takeValue [AvgIntensity],  op_takeValue [Red]] 
+1 :  op_takeValue [Blue] 
+0 :  op_sum [ op_takeValue [Red],  op_takeValue [AvgIntensity]] 
+0 :  op_takeValue [MaxIntensity] 
+1 :  op_sum [ op_takeValue [MaxIntensity],  op_takeValue [Red]] 
+0 :  op_takeValue [Red] 
+0 :  op_takeValue [MinIntensity] 
+0 :  op_mul [ op_takeValue [Red],  op_takeValue [AvgIntensity]] 
+descr end
+
+ 
+		

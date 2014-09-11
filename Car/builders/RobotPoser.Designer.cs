@@ -31,26 +31,33 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupIDbox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nameBox = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.robotListBox = new System.Windows.Forms.TextBox();
             this.removeBtn = new System.Windows.Forms.Button();
+            this.robotListBox = new System.Windows.Forms.ListBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.TypeListBox = new System.Windows.Forms.ListBox();
+            this.confirmEditButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(165, 6);
+            this.textBox1.Location = new System.Drawing.Point(170, 73);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(77, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "3";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(6, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 1;
@@ -58,18 +65,57 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupIDbox);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.nameBox);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 67);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Location = new System.Drawing.Point(15, 193);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 44);
+            this.groupBox1.Size = new System.Drawing.Size(250, 144);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Положение робота/цели";
+            // 
+            // groupIDbox
+            // 
+            this.groupIDbox.Location = new System.Drawing.Point(170, 112);
+            this.groupIDbox.Name = "groupIDbox";
+            this.groupIDbox.Size = new System.Drawing.Size(77, 20);
+            this.groupIDbox.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(125, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Код группы (для МАРС)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Имя робота";
+            // 
+            // nameBox
+            // 
+            this.nameBox.Location = new System.Drawing.Point(95, 18);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(152, 20);
+            this.nameBox.TabIndex = 2;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(153, 17);
+            this.radioButton2.Location = new System.Drawing.Point(153, 44);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(51, 17);
             this.radioButton2.TabIndex = 1;
@@ -80,7 +126,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(34, 17);
+            this.radioButton1.Location = new System.Drawing.Point(34, 44);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(55, 17);
             this.radioButton1.TabIndex = 0;
@@ -91,41 +137,77 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Номер робота";
-            // 
-            // robotListBox
-            // 
-            this.robotListBox.Location = new System.Drawing.Point(97, 38);
-            this.robotListBox.Name = "robotListBox";
-            this.robotListBox.Size = new System.Drawing.Size(42, 20);
-            this.robotListBox.TabIndex = 5;
-            this.robotListBox.Text = "0";
+            this.label2.Text = "Выбрать робота";
             // 
             // removeBtn
             // 
-            this.removeBtn.Location = new System.Drawing.Point(165, 36);
+            this.removeBtn.Location = new System.Drawing.Point(145, 77);
             this.removeBtn.Name = "removeBtn";
-            this.removeBtn.Size = new System.Drawing.Size(75, 23);
+            this.removeBtn.Size = new System.Drawing.Size(120, 30);
             this.removeBtn.TabIndex = 6;
-            this.removeBtn.Text = "remove";
+            this.removeBtn.Text = "Remove";
             this.removeBtn.UseVisualStyleBackColor = true;
             this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
+            // 
+            // robotListBox
+            // 
+            this.robotListBox.FormattingEnabled = true;
+            this.robotListBox.Location = new System.Drawing.Point(15, 25);
+            this.robotListBox.Name = "robotListBox";
+            this.robotListBox.Size = new System.Drawing.Size(124, 82);
+            this.robotListBox.TabIndex = 7;
+            this.robotListBox.SelectedIndexChanged += new System.EventHandler(this.robotListBox_SelectedIndexChanged);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(145, 9);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(120, 30);
+            this.addButton.TabIndex = 8;
+            this.addButton.Text = "Add new";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // TypeListBox
+            // 
+            this.TypeListBox.FormattingEnabled = true;
+            this.TypeListBox.Items.AddRange(new object[] {
+            "planning agent",
+            "HTM agent",
+            "LICS tree agent",
+            "LICS forest car agent",
+            "LICS forest car agent with transfer"});
+            this.TypeListBox.Location = new System.Drawing.Point(18, 113);
+            this.TypeListBox.Name = "TypeListBox";
+            this.TypeListBox.Size = new System.Drawing.Size(247, 69);
+            this.TypeListBox.TabIndex = 10;
+            // 
+            // confirmEditButton
+            // 
+            this.confirmEditButton.Location = new System.Drawing.Point(145, 41);
+            this.confirmEditButton.Name = "confirmEditButton";
+            this.confirmEditButton.Size = new System.Drawing.Size(120, 30);
+            this.confirmEditButton.TabIndex = 11;
+            this.confirmEditButton.Text = "Confirm edit";
+            this.confirmEditButton.UseVisualStyleBackColor = true;
+            this.confirmEditButton.Click += new System.EventHandler(this.confirmEditButton_pressed);
             // 
             // RobotPoser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 112);
-            this.Controls.Add(this.removeBtn);
+            this.ClientSize = new System.Drawing.Size(277, 376);
+            this.Controls.Add(this.confirmEditButton);
+            this.Controls.Add(this.TypeListBox);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.robotListBox);
+            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Name = "RobotPoser";
             this.Text = "Robot/target Builder";
             this.groupBox1.ResumeLayout(false);
@@ -143,8 +225,15 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox robotListBox;
         private System.Windows.Forms.Button removeBtn;
+        private System.Windows.Forms.ListBox robotListBox;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.ListBox TypeListBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.Button confirmEditButton;
+        private System.Windows.Forms.TextBox groupIDbox;
+        private System.Windows.Forms.Label label4;
 
     }
 }

@@ -11,7 +11,7 @@ namespace Car
 {
     //набор управляющих воздействий на автомобиль
     
-    public struct CarControl
+    public struct Control
     {
         public float u_gas;
         public float u_steer;
@@ -23,17 +23,34 @@ namespace Car
     {
         public float w, h; // м
         public float w_base, h_base; //  м
-        public float damping; // 0.1
+        public float damping; // 1
         public float max_speed; //  км/ч
         public float avg_acceleration; // м/с^2
         public float mass; //  кг
         public float max_steer_angle; // град.
+        public static bool operator !=(CarParams p1, CarParams p2)
+        {
+            return !(p1 == p2);
+        }
 
+        public static bool operator ==(CarParams p1, CarParams p2)
+        {//okay, it could have been done easier
+            return p1.w == p2.w &&
+                   p1.h == p2.h &&
+                   p1.w_base == p2.w_base &&
+                   p1.h_base == p2.h_base &&
+                   p1.damping == p2.damping &&
+                   p1.max_speed == p2.max_speed &&
+                   p1.max_steer_angle == p2.max_steer_angle &&
+                   p1.avg_acceleration == p2.avg_acceleration &&
+                   p1.mass == p2.mass;
+
+        }
         public void InitDefault() //Параметры машины по умолчанию
         {
             w = 1.7f; h = 4.0f;
             w_base = 1.5f; h_base = 2.5f;
-            damping = 0.1f; max_speed = 150f;
+            damping = 1f; max_speed = 150f;
             avg_acceleration = 2.3f;
             mass = 1520f;
             max_steer_angle = 45f;
@@ -64,7 +81,7 @@ namespace Car
 
         public float car_angle0 = (float) System.Math.PI/2; //угол между вектором направленности машины и локальной осью X машины (т.е. между y и x)
 
-        float damping = 0.1f; //Трение
+        public static float damping = 1f; //Трение
 
         public Pose pos;
         public void Move(Pose pose)
@@ -220,7 +237,6 @@ namespace Car
                     if (x != null) x.is_calculated = false; //для кэширования лидара
                 }
 
-                body.SetLinearDamping(damping * (1 - cc.u_gas));
             }
 
             killWheelOrthogonalVelocity(body, bodyFW1, dt);
@@ -259,7 +275,7 @@ namespace Car
             jFW1.MotorSpeed = 3 *s* A - B * k2 * jFW1.JointAngle;
         }
 
-        public CarControl cc;
+        public Control cc;
 
         public Lidar lidar { get { return lidars["FWD"]; } }
 

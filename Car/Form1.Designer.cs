@@ -34,6 +34,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.showTrajectoryBox = new System.Windows.Forms.CheckBox();
             this.overlayGroup = new System.Windows.Forms.GroupBox();
+            this.robotListBox = new System.Windows.Forms.ListBox();
             this.camDebugBox = new System.Windows.Forms.CheckBox();
             this.showGeometryBox = new System.Windows.Forms.CheckBox();
             this.showChangedWeightsBox = new System.Windows.Forms.CheckBox();
@@ -45,7 +46,6 @@
             this.ObstBuilderRadio = new System.Windows.Forms.RadioButton();
             this.RemRadio = new System.Windows.Forms.RadioButton();
             this.ColBuilderRadio = new System.Windows.Forms.RadioButton();
-            this.SwitchLearning = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.overlayGroup.SuspendLayout();
@@ -91,16 +91,25 @@
             // 
             // overlayGroup
             // 
+            this.overlayGroup.Controls.Add(this.robotListBox);
             this.overlayGroup.Controls.Add(this.camDebugBox);
             this.overlayGroup.Controls.Add(this.showGeometryBox);
             this.overlayGroup.Controls.Add(this.showChangedWeightsBox);
             this.overlayGroup.Controls.Add(this.showTrajectoryBox);
             this.overlayGroup.Location = new System.Drawing.Point(806, 133);
             this.overlayGroup.Name = "overlayGroup";
-            this.overlayGroup.Size = new System.Drawing.Size(154, 108);
+            this.overlayGroup.Size = new System.Drawing.Size(154, 171);
             this.overlayGroup.TabIndex = 4;
             this.overlayGroup.TabStop = false;
             this.overlayGroup.Text = "Overlay";
+            // 
+            // robotListBox
+            // 
+            this.robotListBox.FormattingEnabled = true;
+            this.robotListBox.Location = new System.Drawing.Point(6, 105);
+            this.robotListBox.Name = "robotListBox";
+            this.robotListBox.Size = new System.Drawing.Size(142, 56);
+            this.robotListBox.TabIndex = 7;
             // 
             // camDebugBox
             // 
@@ -151,7 +160,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(844, 299);
+            this.button1.Location = new System.Drawing.Point(844, 310);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -233,24 +242,11 @@
             this.ColBuilderRadio.UseVisualStyleBackColor = true;
             this.ColBuilderRadio.Click += new System.EventHandler(this.ColBuilderRadio_Click);
             // 
-            // SwitchLearning
-            // 
-            this.SwitchLearning.AutoSize = true;
-            this.SwitchLearning.Checked = true;
-            this.SwitchLearning.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.SwitchLearning.Location = new System.Drawing.Point(812, 266);
-            this.SwitchLearning.Name = "SwitchLearning";
-            this.SwitchLearning.Size = new System.Drawing.Size(150, 17);
-            this.SwitchLearning.TabIndex = 10;
-            this.SwitchLearning.Text = "Включить самообучение";
-            this.SwitchLearning.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 501);
-            this.Controls.Add(this.SwitchLearning);
             this.Controls.Add(this.Builders);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBoxOverlay);
@@ -269,7 +265,6 @@
             this.Builders.ResumeLayout(false);
             this.Builders.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -290,8 +285,8 @@
         private System.Windows.Forms.RadioButton RemRadio;
         private System.Windows.Forms.RadioButton ObstBuilderRadio;
         private System.Windows.Forms.RadioButton rposeRadio;
-        private System.Windows.Forms.CheckBox SwitchLearning;
         private System.Windows.Forms.RadioButton saveloadRadio;
+        public System.Windows.Forms.ListBox robotListBox;
     }
 }
 

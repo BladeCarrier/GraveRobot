@@ -37,13 +37,7 @@ C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x8
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.pdb
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Car.exe
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Car.pdb
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\IronPython.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\IronPython.Modules.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Dynamic.dll
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Debugging.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.dll
-C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Box2DX.pdb
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.Core.xml
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.csprojResolveAssemblyReference.cache
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.Form1.resources
@@ -67,3 +61,10 @@ C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.Properties.Resources.resources
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav2\Car\obj\x86\Debug\Car.csproj.GenerateResource.Cache
 C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.LicsDataWindow.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.builders.ColumnBuilder.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.builders.ObstacleBuilder.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.builders.RobotPoser.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.builders.SaveLoadBuilder.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\obj\x86\Debug\Car.builders.RemoverBuilder.resources
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.AspNet.dll
+C:\Users\sasha_000\Documents\Visual Studio 2010\Projects\NeuroCar_nav\Car\bin\Debug\Microsoft.Scripting.AspNet.xml

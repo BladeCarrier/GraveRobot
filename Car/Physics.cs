@@ -16,38 +16,22 @@ namespace Car
     {
         public Pose p;
         public Vec2 sz;
-        public bool isEllipse; // если истинно, работает как эллипс, ложно - работает, как прямоугольник
+        public bool isCircle; // если истинно, работает как эллипс, ложно - работает, как прямоугольник
         public BodyBehaviour b;
-        public Vec2 F1, F2;//фокальные точки.
-        public float r;//радиус (или полурасстояние до кромки у эллипса)
+        public Vec2 C;//центр
+        public float r;//радиус
         
-        public Area(Pose p_, Vec2 sz_, BodyBehaviour b_, bool isEllipse_)
+        public Area(Pose p_, Vec2 sz_, BodyBehaviour b_, bool isCircle_)
         {
             p = p_;
             sz = sz_;
             b = b_;
-            isEllipse = isEllipse_;
-            r = (sz.X * sz.X + sz.Y * sz.Y) / 2;
-            F1 = F2 = new Vec2(p.xc, p.yc);
-            if (isEllipse)
+            isCircle = isCircle_;
+            r = (float)(System.Math.Sqrt((sz.X * sz.X + sz.Y * sz.Y) / 4)); //расстояние от центра до угла
+            C = new Vec2(p.xc, p.yc);
+            if (isCircle)
             {
-                bool horizontal = false;//Секу, не говорите мне, что можно было сделать проще через геометрический движок... я и так знаю.
-                if (sz_.X > sz_.Y) horizontal = true;//да, это можно было отдельно не считать. Да, и в этом вы тоже правы.
-                float a_ax = System.Math.Max(sz_.X, sz_.Y)/2;//большая полуось
-                float b_ax = System.Math.Min(sz_.X, sz_.Y)/2;//малая полуось
-                float exts = (float)System.Math.Sqrt(1 - b_ax * b_ax / (a_ax * a_ax));//эксцентриситет
-                float c = a_ax * exts;//фокальное расстояние
-                Vec2 vFocal = new Vec2((float)System.Math.Cos(p.angle_rad), (float)System.Math.Sin(p.angle_rad));
-                Vec2 C = new Vec2(p.xc,p.yc);
-                if (!horizontal)
-                {
-                    vFocal.X += vFocal.Y;
-                    vFocal.Y = vFocal.X - vFocal.Y;
-                    vFocal.X -= vFocal.Y;
-                }
-                F1 = C + vFocal;
-                F2 = C - vFocal;
-                r = a_ax; //полурасстояние до кромки равно большой полуоси
+                r = System.Math.Max(sz.X, sz.Y) / 2;//радиус
             }
         }
 
@@ -56,14 +40,15 @@ namespace Car
         public bool intersects(Pose p2, Vec2 sz2)
         {
             Vec2 vc2 = new Vec2 (p2.xc,p2.yc); //Записываем координаты центра, не учитываем угол поворота
-            if (((F1 - vc2).Length() + (F2 - vc2).Length() > 2 * r)) return false;
+            if (((C - vc2).Length() > r)) return false;
+            if (isCircle) return true; //если центр внутри радиуса у круга, это интерсект.
             vc2.X -= p.xc;
             vc2.Y -= p.yc;//зачем: повернуть точку в базис, где наш прямоугольник не повёрнут и стоит в начале координат, после чего смотреть, не вылезает ли она за половины ширины или длины.
             Vec2 vc2prime = new Vec2();
             vc2prime.X = (float)(vc2.X*System.Math.Cos(p.angle_rad) + vc2.Y*System.Math.Sin(p.angle_rad));//check me!
             vc2prime.Y = (float)(vc2.Y*System.Math.Cos(p.angle_rad) - vc2.X*System.Math.Sin(p.angle_rad));
             vc2 = vc2prime;
-            if (!isEllipse &&((System.Math.Abs(vc2.X) > sz.X / 2) || System.Math.Abs(vc2.Y) > sz.Y / 2)) return false;
+            if (((System.Math.Abs(vc2.X) > sz.X / 2) || System.Math.Abs(vc2.Y) > sz.Y / 2)) return false;
             return true;
         }
     }

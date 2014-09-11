@@ -1,0 +1,108 @@
+
+round # 0 
+New loop 
+0.343057960611 seconds spent for ProcessSamples 
+Samples processed 
+
+Managing trees pool. Initial nodes count =  10 / 100 , trees count =  10 
+0.00674010978265 seconds spent for negative fitness removal 
+0 trees removed for negative fitness,  0  replaced 
+
+Recombination phase 
+Recombination phase: sequence len = 10 
+0.31029079802 seconds spent for recombination 
+End of recombination phase 
+
+Expansion phase 
+Expansion phase: sequence len = 105 
+1.30869657190 seconds spent for expansion 
+End of expansion phase 
+
+Pruning phase 
+Pruning phase: initial nodes count = 45 / 100 
+0  trees removed in pruning phase 
+0.000712156088193 seconds spent for pruning 
+End of pruning phase 
+1.63041778874 seconds spent for manageTrees 
+OnAfterStep nodes count =  45 , trees count =  15 
+End of tree management.
+ 
+
+Managing attrs. Initial attrs count =  90 / 105 
+Deletion sequence length =  6 
+0  trees removed due to zero attrs 
+Extension sequence length =  21 
+0.487259590302 seconds spent for manageAttrs 
+OnAfterSubStep attrs count =  103 / 105 
+End of attrs management.
+ 
+
+Managing samples. Initial samples count =  90 / 1500 
+Deletion sequence length =  0 
+0  trees removed due to zero samples 
+0.00103487854289 seconds spent for manageSamples 
+OnAfterStep samples count =  90 / 1500 
+End of samples management.
+ 
+assertions passed 
+max fitness: 1.63636363636 
+avg fitness: 1.0 
+min fitness: 0.784090909091 
+trees population onafterstep 15 
+3.00401578489 seconds spent for loop 
+loop end 
+End of round 0 
+
+round # 1 
+New loop 
+0.244206248158 seconds spent for ProcessSamples 
+Samples processed 
+
+Managing trees pool. Initial nodes count =  45 / 100 , trees count =  15 
+0.000247458560669 seconds spent for negative fitness removal 
+0 trees removed for negative fitness,  0  replaced 
+
+Recombination phase 
+Recombination phase: sequence len = 10 
+0.64974920588 seconds spent for recombination 
+End of recombination phase 
+
+Expansion phase 
+Expansion phase: sequence len = 60 
+0.867701469185 seconds spent for expansion 
+End of expansion phase 
+
+Pruning phase 
+Pruning phase: initial nodes count = 60 / 100 
+0  trees removed in pruning phase 
+8.0965704182e-05 seconds spent for pruning 
+End of pruning phase 
+1.53477961648 seconds spent for manageTrees 
+OnAfterStep nodes count =  60 , trees count =  20 
+End of tree management.
+ 
+
+Managing attrs. Initial attrs count =  146 / 140 
+Deletion sequence length =  34 
+0  trees removed due to zero attrs 
+Extension sequence length =  28 
+0.650129516618 seconds spent for manageAttrs 
+OnAfterSubStep attrs count =  131 / 140 
+End of attrs management.
+ 
+
+Managing samples. Initial samples count =  200 / 1500 
+Deletion sequence length =  0 
+0  trees removed due to zero samples 
+0.00048864513017 seconds spent for manageSamples 
+OnAfterStep samples count =  200 / 1500 
+End of samples management.
+ 
+assertions passed 
+max fitness: 1.57575757576 
+avg fitness: 1.0 
+min fitness: 0.8 
+trees population onafterstep 20 
+2.79920904490 seconds spent for loop 
+loop end 
+End of round 1 

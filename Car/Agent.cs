@@ -6,16 +6,20 @@ using Box2DX.Dynamics;
 using Box2DX.Common;
 namespace Car
 {
-    abstract class Agent
+    public abstract class Agent
     {//любое поведение реализуется через агента
         //обоснуй: давать агенту доступ к car или тем более environment было бы нечестно
         public Agent()
         {
         }
+
+        //вызывается прямо перед стартом симуляции
+        public virtual void initAgent() { }
+
         //метод react вызывается на каждом тике симуляции
-        public virtual CarControl react(PerceptParams pp, float t)
+        public virtual Control react(PerceptParams pp, float t)
         {
-            return new CarControl();
+            return new Control();
         }
     }   
     class reflexAgent:Agent
@@ -41,7 +45,7 @@ namespace Car
         }
 
         /*ЗАПИСЬ ТЕКСТОВЫХ ЛОГФАЙЛОВ*/
-        public void WriteLog(System.IO.TextWriter text, float t, CarControl carcar, PerceptParams parpar)//не уверена, что от меня требовалось именно это, но...
+        public void WriteLog(System.IO.TextWriter text, float t, Control carcar, PerceptParams parpar)//не уверена, что от меня требовалось именно это, но...
         {
             string time, gas, steer, pos;
             if (carcar.u_steer >= 0) { steer = "; Steer: +" + String.Format("{0:000.000}", System.Math.Round(carcar.u_steer, 3)); }
@@ -54,11 +58,11 @@ namespace Car
         }
         /*КОНЕЦ ЗАПСИИ ТЕКСТОВОГО ЛОГФАЙЛА*/
 
-        public override CarControl react(PerceptParams pp, float t)
+        public override Control react(PerceptParams pp, float t)
         {
-            if (pp.dist < 2.5f) return new CarControl { u_brake = 1 };
+            if (pp.dist < 2.5f) return new Control { u_brake = 1 };
             
-            CarControl cc = new CarControl { u_gas = 0.5f };
+            Control cc = new Control { u_gas = 0.5f };
 
             float cm = pp.lidar_cm, d = pp.lidar_d;
             float ang_target = pp.targ_angle;
@@ -89,14 +93,27 @@ namespace Car
         public Dictionary<state, System.Drawing.Color> obsts = new Dictionary<state, System.Drawing.Color>();//same
         public DStar ds;
         public double angle_last = 0, tLast = 0.0001, tBack = -10;
-        public double ox = 80.0 / 80,
-                      oy = 50.0 / 50,
+        public double ox,
+                      oy,
                       xs = 1,
                       ys = 1;
         public double goBackOnCollisionTimer = 0.5;
         public orient orienter = new orient();
-        public dreamerAgent(Pose initial, Vec2 target, int xtiles = 80, int ytiles = 50)
+
+
+        public Pose initial;
+        public Vec2 target;
+        public int xtiles = 80;
+        public int ytiles = 50;
+        public dreamerAgent(Pose initial, Vec2 target)
             : base()
+        {
+            ox = 80 / xtiles; oy = 50 / ytiles;
+            this.initial = initial;
+            this.target = target;
+            
+        }
+        public override void initAgent()
         {
             int x = Convert.ToInt32(System.Math.Round((target.X - xs) / ox)),
                 y = Convert.ToInt32(System.Math.Round((target.Y - ys) / oy));
@@ -106,9 +123,10 @@ namespace Car
             pr = new Prbl(xtiles, ytiles, xi, yi, orienter.radianToOri(3.14 + initial.angle_rad), goalx: x, goaly: y);
             ds = new DStar(pr);
             path = ds.getCurrentPlan();
+
         }
         public double P = 2, D = 0.3; //PD-регулятор угла
-        public int maxforewatch = 3;// максимальное расстояние до опорного узла
+        public int maxforewatch = 1;// максимальное расстояние до опорного узла
         public double gasLast;
 
 
@@ -125,11 +143,11 @@ namespace Car
         public virtual void intelligentSystemCalculateWeights(PerceptParams pp, float t) { }
         public double tstand = 0, limitstand = 1;
         public Dictionary<state, double> measures = new Dictionary<state,double>();//список рутовых измерений(за счёт kaif и ksurf)
-        public override CarControl react(PerceptParams pp, float t)
+        public override Control react(PerceptParams pp, float t)
         {
 
-            base.react(pp, t);
-
+            base.react(pp, t);//to write logs,etc
+            //hull
             x = Convert.ToInt32(System.Math.Round((pp.p.xc - xs) / ox));
             if (x < 0) x = 0;
             if (x > pr.dx - 1) x = pr.dx - 1;
@@ -137,7 +155,7 @@ namespace Car
             if (y < 0) y = 0;
             if (y > pr.dy - 1) y = pr.dy - 1;
             a = (orienter).radianToOri(pp.p.angle_rad);
-
+            //nose
             xn = Convert.ToInt32(System.Math.Round((pp.nose.X - xs) / ox));
             if (xn < 0) xn = 0;
             if (xn > pr.dx - 1) xn = pr.dx - 1;
@@ -153,11 +171,11 @@ namespace Car
                     infs.Add(pr.states[orientation.down][xn, yn]);
                 if (obsts.ContainsKey(pr.states[orientation.down][xn, yn]))
                     obsts.Remove(pr.states[orientation.down][xn, yn]);
-                pr.setCost(xn, yn, pp.kaif);
+                pr.setCost(xn, yn, pr.maxCost*10,false);
                 measures[pr.states[orientation.down][xn, yn]] = pp.kaif;
 
             }
-            if (!double.IsPositiveInfinity(pp.ksurf))
+            else if (!double.IsPositiveInfinity(pp.ksurf))
             {
                 pr.setCost(x, y, pp.ksurf);
                 measures[pr.states[orientation.down][x, y]] = pp.ksurf;
@@ -209,10 +227,10 @@ namespace Car
             if (t - tBack < goBackOnCollisionTimer)
             {
                 gasLast = -1;
-                return new CarControl { u_gas = -1f };
+                return new Control { u_gas = -1f };
             }
 
-            if (path.Count < 2) return new CarControl { u_brake = float.PositiveInfinity };
+            if (path.Count < 2) return new Control { u_brake = float.PositiveInfinity };
             int forewatch = System.Math.Max(2, Convert.ToInt32(System.Math.Round((double)(maxforewatch) * gasLast)));
 
             Vec2 cubePos = new Vec2 { X = (float)(path[System.Math.Min(forewatch, path.Count - 1)].x * ox + xs), Y = (float)(path[System.Math.Min(forewatch + 1, path.Count - 1)].y * oy + ys) };
@@ -283,7 +301,7 @@ namespace Car
             //gas = (1 / (1 + P * System.Math.Abs(r_angle) + D * System.Math.Abs(angle_diff)));
             //if (goingBack) gas = -0.3;
 
-            CarControl cc = new CarControl { u_steer = (float)steer, u_gas = (float)(gas*(1+t-tstand)) };
+            Control cc = new Control { u_steer = (float)steer, u_gas = (float)(gas*(1+t-tstand)) };
             gasLast = gas * (1 + t - tstand);
             return cc;
         }

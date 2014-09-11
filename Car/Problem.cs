@@ -11,9 +11,9 @@ namespace Car
         public state current, goal;
         public List<state> changedCost = new List<state>();
         public double[,] costs;
-        public void setCost(int x, int y, double cost)
+        public void setCost(int x, int y, double cost,bool limited = true)
         {
-            setCost(new state(x,y,-1,-1,orientation.down), cost);
+            setCost(new state(x,y,-1,-1,orientation.down), cost,limited);
         }
         public bool isDeadEnd(state s)
         {
@@ -59,12 +59,15 @@ namespace Car
             heuristics[sFrom][sTo] = value;
             
         }
-        public void setCost( state s2,double cost)
+        public void setCost( state s2,double cost,bool limited = true)
         {
             if (costs[s2.x, s2.y] != cost)
             {
-
-                costs[s2.x, s2.y] = Math.Min( cost,maxCost);
+                
+                costs[s2.x, s2.y] = cost;
+                if (limited)
+                    if (cost > maxCost)
+                        costs[s2.x, s2.y] = maxCost;
                 List<state> temp = new List<state>();
                 for(int i=-1; i<=1;i++)
                     for(int j=-1;j<=1;j++)
